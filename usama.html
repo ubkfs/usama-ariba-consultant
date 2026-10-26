@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Usama Bin Kashem | SAP Ariba Upstream Functional Consultant</title>
+<!-- Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms & Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    :root {
+      --neu-bg: #E6EBF2;
+      --neu-light: #ffffff;
+      --neu-dark: #c5cbd5;
+      --neu-accent: #0070d2;
+      --neu-teal: #0d9488;
+      --neu-cyan: #0284c7;
+      --neu-text: #1a2332;
+      --neu-text-muted: #53647b;
+      --card-radius: 24px;
+      --shadow-raised: 9px 9px 18px var(--neu-dark), -9px -9px 18px var(--neu-light);
+      --shadow-raised-sm: 5px 5px 12px var(--neu-dark), -5px -5px 12px var(--neu-light);
+      --shadow-raised-lg: 14px 14px 28px var(--neu-dark), -14px -14px 28px var(--neu-light);
+      --shadow-inset: inset 5px 5px 10px var(--neu-dark), inset -5px -5px 10px var(--neu-light);
+      --shadow-inset-sm: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
+      --shadow-convex: linear-gradient(145deg, #f6fbff, #cfd4da);
+    }
+
+    html.dark {
+      --neu-bg: #1E2430;
+      --neu-light: #283040;
+      --neu-dark: #141820;
+      --neu-accent: #38bdf8;
+      --neu-teal: #14b8a6;
+      --neu-cyan: #0ea5e9;
+      --neu-text: #f1f5f9;
+      --neu-text-muted: #94a3b8;
+      --shadow-raised: 8px 8px 18px #141820, -8px -8px 18px #283040;
+      --shadow-raised-sm: 5px 5px 12px #141820, -5px -5px 12px #283040;
+      --shadow-raised-lg: 14px 14px 28px #141820, -14px -14px 28px #283040;
+      --shadow-inset: inset 5px 5px 10px #141820, inset -5px -5px 10px #283040;
+      --shadow-inset-sm: inset 3px 3px 6px #141820, inset -3px -3px 6px #283040;
+      --shadow-convex: linear-gradient(145deg, #202734, #1b202b);
+    }
+
+    body {
+      background-color: var(--neu-bg);
+      color: var(--neu-text);
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.35s ease;
+      overflow-x: hidden;
+    }
+
+    /* Soft UI Base Utilities */
+    .neu-flat {
+      background: var(--neu-bg);
+      box-shadow: var(--shadow-raised);
+      border-radius: var(--card-radius);
+    }
+    .neu-flat-sm {
+      background: var(--neu-bg);
+      box-shadow: var(--shadow-raised-sm);
+      border-radius: 16px;
+    }
+    .neu-flat-lg {
+      background: var(--neu-bg);
+      box-shadow: var(--shadow-raised-lg);
+      border-radius: 28px;
+    }
+    .neu-inset {
+      background: var(--neu-bg);
+      box-shadow: var(--shadow-inset);
+      border-radius: var(--card-radius);
+    }
+    .neu-inset-sm {
+      background: var(--neu-bg);
+      box-shadow: var(--shadow-inset-sm);
+      border-radius: 14px;
+    }
+    .neu-button {
+      background: var(--neu-bg);
+      box-shadow: var(--shadow-raised-sm);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .neu-button:hover {
+      box-shadow: var(--shadow-raised);
+      transform: translateY(-2px);
+    }
+    .neu-button:active, .neu-button.active {
+      box-shadow: var(--shadow-inset);
+      transform: translateY(1px);
+    }
+
+    /* Custom Scrollbar & Selection */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--neu-bg); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--neu-dark);
+      border-radius: 9999px;
+      border: 2px solid var(--neu-bg);
+    }
+    ::selection {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    /* Tactile Floating Animation */
+    @keyframes floatSoft {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(0.8deg); }
+    }
+    .animate-float {
+      animation: floatSoft 6s ease-in-out infinite;
+    }
+
+    /* Ripple Effect */
+    .ripple-target {
+      position: relative;
+      overflow: hidden;
+    }
+    .ripple-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(2, 132, 199, 0.25);
+      transform: scale(0);
+      animation: rippleAnim 0.6s linear;
+      pointer-events: none;
+    }
+    @keyframes rippleAnim {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Accessible Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-sky-500 selection:text-white">
+<!-- PAGE PRELOADER -->
+<div class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[var(--neu-bg)] transition-opacity duration-500" id="neu-preloader">
+<div class="relative flex items-center justify-center w-28 h-28 neu-flat rounded-full">
+<div class="absolute inset-2 rounded-full neu-inset animate-spin border-t-2 border-sky-500" style="animation-duration: 1.8s;"></div>
+<div class="flex flex-col items-center justify-center z-10 select-none">
+<span class="text-2xl font-black tracking-wider text-sky-600 dark:text-sky-400">UBK</span>
+<span class="text-[9px] uppercase tracking-widest text-[var(--neu-text-muted)] font-bold">SAP ARIBA</span>
+</div>
+</div>
+<p class="mt-6 text-xs uppercase tracking-widest font-semibold text-[var(--neu-text-muted)] animate-pulse">Initializing Neumorphic Tenant...</p>
+</div>
+<!-- SCROLL PROGRESS INDICATOR -->
+<div class="fixed top-0 left-0 right-0 h-1.5 z-50 bg-transparent" id="scroll-progress-bar">
+<div class="h-full w-0 bg-gradient-to-r from-teal-500 via-sky-500 to-indigo-600 shadow-[0_0_12px_rgba(2,132,199,0.7)] transition-all duration-75" id="scroll-progress-fill"></div>
+</div>
+<!-- FIXED NEUMORPHIC HEADER / NAVIGATION -->
+<header class="fixed top-2 sm:top-4 left-0 right-0 z-40 px-3 sm:px-6 max-w-7xl mx-auto">
+<div class="neu-flat px-4 sm:px-6 py-3.5 flex items-center justify-between gap-3 sm:gap-6 backdrop-blur-md">
+<!-- Monogram & Branding -->
+<a class="flex items-center gap-3 group" href="#">
+<div class="w-11 h-11 neu-inset-sm flex items-center justify-center font-extrabold text-sky-600 dark:text-sky-400 text-lg tracking-wider rounded-2xl group-hover:scale-105 transition-transform">
+          UBK
+        </div>
+<div class="flex flex-col">
+<span class="font-bold text-base tracking-tight text-[var(--neu-text)] group-hover:text-sky-600 transition-colors">Usama Bin Kashem</span>
+<span class="text-[11px] font-semibold tracking-wider uppercase text-[var(--neu-text-muted)] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-teal-500 inline-block"></span>
+            SAP Ariba Upstream Consultant
+          </span>
+</div>
+</a>
+<!-- Desktop Nav -->
+<nav class="hidden xl:flex items-center gap-2 neu-inset-sm px-3 py-1.5">
+<a class="nav-item text-xs font-semibold px-3 py-1.5 rounded-xl transition-all text-[var(--neu-text-muted)] hover:text-[var(--neu-text)]" data-section="about" href="#about">About</a>
+<a class="nav-item text-xs font-semibold px-3 py-1.5 rounded-xl transition-all text-[var(--neu-text-muted)] hover:text-[var(--neu-text)]" data-section="expertise" href="#expertise">Expertise</a>
+<a class="nav-item text-xs font-semibold px-3 py-1.5 rounded-xl transition-all text-[var(--neu-text-muted)] hover:text-[var(--neu-text)]" data-section="experience" href="#experience">Experience</a>
+<a class="nav-item text-xs font-semibold px-3 py-1.5 rounded-xl transition-all text-[var(--neu-text-muted)] hover:text-[var(--neu-text)]" data-section="projects" href="#projects">Projects</a>
+<a class="nav-item text-xs font-semibold px-3 py-1.5 rounded-xl transition-all text-[var(--neu-text-muted)] hover:text-[var(--neu-text)]" data-section="process" href="#process">Process</a>
+<a class="nav-item text-xs font-semibold px-3 py-1.5 rounded-xl transition-all text-[var(--neu-text-muted)] hover:text-[var(--neu-text)]" data-section="certifications" href="#certifications">Certifications</a>
+<a class="nav-item text-xs font-semibold px-3 py-1.5 rounded-xl transition-all text-[var(--neu-text-muted)] hover:text-[var(--neu-text)]" data-section="contact" href="#contact">Contact</a>
+</nav>
+<!-- Action Cluster: Theme Toggle + Hire CTA -->
+<div class="flex items-center gap-3">
+<!-- Neumorphic Dark/Light Toggle Switch -->
+<button aria-label="Toggle Dark and Light Mode" class="neu-button w-10 h-10 rounded-2xl flex items-center justify-center text-[var(--neu-text-muted)] hover:text-sky-500 transition-colors focus:outline-none" id="theme-toggle-btn">
+<span class="material-symbols-outlined text-[20px] dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined text-[20px] hidden dark:inline-block text-amber-400">light_mode</span>
+</button>
+<a class="neu-button px-4 sm:px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold text-sky-600 dark:text-sky-400 hover:text-white hover:bg-sky-600 transition-all hidden sm:inline-flex items-center gap-2" href="#contact">
+<span class="material-symbols-outlined text-[18px]">handshake</span>
+<span>Hire Me</span>
+</a>
+</div>
+</div>
+</header>
+<!-- MAIN WRAPPER -->
+<main class="pt-28 sm:pt-36 flex flex-col gap-24 sm:gap-32 max-w-7xl mx-auto px-4 sm:px-6">
+<!-- HERO SECTION -->
+<section class="relative w-full flex flex-col gap-12 pt-4 sm:pt-8" id="hero">
+<!-- Ambient Glow Behind Soft Surface -->
+<div class="absolute -top-16 -left-16 w-80 h-80 bg-sky-400/10 dark:bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-48 -right-16 w-96 h-96 bg-teal-400/10 dark:bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Top Availability Strip -->
+<div class="flex flex-wrap items-center gap-3">
+<div class="neu-inset-sm px-3.5 py-1.5 flex items-center gap-2 text-xs font-semibold text-teal-600 dark:text-teal-400">
+<span class="w-2.5 h-2.5 rounded-full bg-teal-500 animate-ping"></span>
+<span class="w-2 h-2 rounded-full bg-teal-500 -ml-4 inline-block"></span>
+          Available for Enterprise Advisory &amp; Roles
+        </div>
+<div class="neu-flat-sm px-3.5 py-1.5 text-xs font-semibold text-[var(--neu-text-muted)] flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-sky-500">verified</span>
+          2.7 Years Enterprise Experience
+        </div>
+<div class="neu-flat-sm px-3.5 py-1.5 text-xs font-semibold text-[var(--neu-text-muted)] flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-teal-500">workspace_premium</span>
+          2 Official SAP Ariba Certifications
+        </div>
+</div>
+<!-- Hero Grid: Narrative + 3D Neumorphic Interactive Dashboard Card -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+<!-- Narrative Column -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<span class="text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">Enterprise Functional Portfolio</span>
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--neu-text)] leading-[1.15]">
+              Usama Bin Kashem
+            </h1>
+<!-- Dynamic Typing Effect Hook -->
+<div class="flex items-center flex-wrap gap-2 text-xl sm:text-2xl font-bold text-[var(--neu-text)] min-h-[38px] mt-1">
+<span>SAP Ariba Upstream:</span>
+<span class="text-sky-600 dark:text-sky-400 underline decoration-teal-500 decoration-4 underline-offset-4" id="typed-text"></span>
+<span class="w-1 h-6 bg-sky-500 animate-pulse inline-block" id="typed-cursor"></span>
+</div>
+</div>
+<p class="text-base sm:text-lg text-[var(--neu-text-muted)] leading-relaxed font-normal">
+            Specialized upstream functional consultant orchestrating high-compliance <span class="font-semibold text-[var(--neu-text)]">Supplier Lifecycle &amp; Performance (SLP)</span>, agile <span class="font-semibold text-[var(--neu-text)]">Strategic Sourcing</span>, and end-to-end <span class="font-semibold text-[var(--neu-text)]">Contract Lifecycle Management (CLM)</span> workflows. Bridging executive procurement strategy and transactional governance with zero margin for operational disruption.
+          </p>
+<!-- CTAs & Action Pills -->
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<a class="neu-button px-7 py-3.5 rounded-2xl text-sm font-bold text-white bg-gradient-to-r from-sky-600 to-teal-600 hover:from-sky-500 hover:to-teal-500 flex items-center gap-2 shadow-lg shadow-sky-600/20" href="#contact">
+<span class="material-symbols-outlined text-[20px]">send</span>
+              Contact Usama
+            </a>
+<a class="neu-button px-6 py-3.5 rounded-2xl text-sm font-bold text-[var(--neu-text)] flex items-center gap-2" href="#" id="download-resume-btn" onclick="triggerResumeDownload(event)">
+<span class="material-symbols-outlined text-[20px] text-sky-500">download</span>
+              Download Resume
+            </a>
+<span class="hidden text-xs font-semibold text-teal-600 dark:text-teal-400 flex items-center gap-1 animate-bounce" id="resume-download-feedback">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Profile Saved
+            </span>
+</div>
+</div>
+<!-- Right 3D Soft UI Dashboard Art (Strictly Inline SVG & Neumorphic Components) -->
+<div class="lg:col-span-5 flex justify-center">
+<div class="w-full max-w-md neu-flat-lg p-6 sm:p-7 flex flex-col gap-6 relative animate-float">
+<!-- Simulated Upstream Tenant Card -->
+<div class="flex items-center justify-between border-b border-black/5 dark:border-white/5 pb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl neu-inset-sm flex items-center justify-center text-sky-500">
+<span class="material-symbols-outlined text-[22px]">corporate_fare</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-[var(--neu-text)]">Ariba Upstream Suite</h3>
+<p class="text-[11px] text-[var(--neu-text-muted)]">Live Functional Governance</p>
+</div>
+</div>
+<span class="neu-inset-sm px-2.5 py-1 text-[10px] font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider">Active S2C</span>
+</div>
+<!-- Soft Micro S2C Visual Indicator Graph (Pure SVG) -->
+<div class="neu-inset p-4 rounded-2xl flex flex-col gap-3">
+<div class="flex justify-between items-center text-xs font-bold text-[var(--neu-text)]">
+<span>Procurement Pipeline Health</span>
+<span class="text-sky-600 dark:text-sky-400 font-extrabold">99.8% SLA</span>
+</div>
+<!-- Simulated Wave Graphic -->
+<svg class="w-full h-16 stroke-sky-500 fill-none" stroke-linecap="round" stroke-width="3" viewbox="0 0 320 80">
+<defs>
+<lineargradient id="grad-wave" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#0284c7" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#0284c7" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,50 Q40,20 80,45 T160,25 T240,40 T320,15 L320,80 L0,80 Z" fill="url(#grad-wave)" stroke="none"></path>
+<path d="M0,50 Q40,20 80,45 T160,25 T240,40 T320,15"></path>
+<circle class="fill-teal-400" cx="80" cy="45" r="4"></circle>
+<circle class="fill-sky-500" cx="160" cy="25" r="4"></circle>
+<circle class="fill-indigo-500" cx="240" cy="40" r="4"></circle>
+</svg>
+</div>
+<!-- Interactive Upstream Module Status List -->
+<div class="grid grid-cols-3 gap-3">
+<div class="neu-inset-sm p-3 text-center rounded-xl flex flex-col items-center">
+<span class="text-[10px] font-bold uppercase text-[var(--neu-text-muted)]">SLP</span>
+<span class="text-sm font-extrabold text-teal-600 dark:text-teal-400 mt-0.5">Tiered</span>
+<span class="text-[9px] text-[var(--neu-text-muted)]">Vendor Master</span>
+</div>
+<div class="neu-inset-sm p-3 text-center rounded-xl flex flex-col items-center">
+<span class="text-[10px] font-bold uppercase text-[var(--neu-text-muted)]">Sourcing</span>
+<span class="text-sm font-extrabold text-sky-600 dark:text-sky-400 mt-0.5">Auctions</span>
+<span class="text-[9px] text-[var(--neu-text-muted)]">RFX / Scoring</span>
+</div>
+<div class="neu-inset-sm p-3 text-center rounded-xl flex flex-col items-center">
+<span class="text-[10px] font-bold uppercase text-[var(--neu-text-muted)]">CLM</span>
+<span class="text-sm font-extrabold text-indigo-500 mt-0.5">Clauses</span>
+<span class="text-[9px] text-[var(--neu-text-muted)]">Workspaces</span>
+</div>
+</div>
+<!-- Quick Direct Coordinates -->
+<div class="neu-flat-sm p-3 rounded-xl flex items-center justify-between text-xs text-[var(--neu-text-muted)]">
+<span class="flex items-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-[16px] text-sky-500">location_on</span> Howrah, WB, India
+              </span>
+<span class="flex items-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-[16px] text-teal-500">mail</span> Direct Inquiry
+              </span>
+</div>
+</div>
+</div>
+</div>
+<!-- ANIMATED STAT COUNTERS ROW -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-5 pt-4">
+<!-- Stat 1 -->
+<div class="neu-flat p-6 rounded-3xl flex flex-col gap-2">
+<div class="flex items-center justify-between text-[var(--neu-text-muted)]">
+<span class="text-xs font-bold uppercase tracking-wider">Experience</span>
+<span class="material-symbols-outlined text-[22px] text-sky-500">history_edu</span>
+</div>
+<div class="text-3xl sm:text-4xl font-black text-[var(--neu-text)] flex items-baseline gap-1">
+<span class="stat-counter" data-decimals="1" data-target="2.7">0.0</span>
+<span class="text-xl font-bold text-sky-600 dark:text-sky-400">+ Yrs</span>
+</div>
+<p class="text-xs text-[var(--neu-text-muted)]">Dedicated SAP functional delivery &amp; enterprise support.</p>
+</div>
+<!-- Stat 2 -->
+<div class="neu-flat p-6 rounded-3xl flex flex-col gap-2">
+<div class="flex items-center justify-between text-[var(--neu-text-muted)]">
+<span class="text-xs font-bold uppercase tracking-wider">Certifications</span>
+<span class="material-symbols-outlined text-[22px] text-teal-500">verified</span>
+</div>
+<div class="text-3xl sm:text-4xl font-black text-[var(--neu-text)] flex items-baseline gap-1">
+<span class="stat-counter" data-decimals="0" data-target="2">0</span>
+<span class="text-xl font-bold text-teal-600 dark:text-teal-400">Official</span>
+</div>
+<p class="text-xs text-[var(--neu-text-muted)]">SAP Ariba Contract Management &amp; SAP Ariba SLP.</p>
+</div>
+<!-- Stat 3 -->
+<div class="neu-flat p-6 rounded-3xl flex flex-col gap-2">
+<div class="flex items-center justify-between text-[var(--neu-text-muted)]">
+<span class="text-xs font-bold uppercase tracking-wider">Scope</span>
+<span class="material-symbols-outlined text-[22px] text-indigo-500">widgets</span>
+</div>
+<div class="text-3xl sm:text-4xl font-black text-[var(--neu-text)] flex items-baseline gap-1">
+<span class="stat-counter" data-decimals="0" data-target="3">0</span>
+<span class="text-xl font-bold text-indigo-500">Modules</span>
+</div>
+<p class="text-xs text-[var(--neu-text-muted)]">Ariba SLP, Strategic Sourcing, and CLM Workspaces.</p>
+</div>
+<!-- Stat 4 -->
+<div class="neu-flat p-6 rounded-3xl flex flex-col gap-2">
+<div class="flex items-center justify-between text-[var(--neu-text-muted)]">
+<span class="text-xs font-bold uppercase tracking-wider">Client Proof</span>
+<span class="material-symbols-outlined text-[22px] text-amber-500">domain</span>
+</div>
+<div class="text-3xl sm:text-4xl font-black text-[var(--neu-text)] flex items-baseline gap-1">
+<span class="stat-counter" data-decimals="0" data-target="1">0</span>
+<span class="text-xl font-bold text-amber-500">Greenfield</span>
+</div>
+<p class="text-xs text-[var(--neu-text-muted)]">Full upstream end-to-end setup delivered independently.</p>
+</div>
+</div>
+</section>
+<!-- SECTION: ABOUT ME & FUNCTIONAL PROFILE -->
+<section class="w-full flex flex-col gap-10" id="about">
+<div class="flex flex-col gap-2">
+<span class="text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">Functional Overview</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-[var(--neu-text)]">Strategic Upstream Procurement Engineering</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+<div class="lg:col-span-7 neu-flat p-7 sm:p-9 rounded-3xl flex flex-col justify-between gap-6">
+<div class="flex flex-col gap-4 text-base text-[var(--neu-text-muted)] leading-relaxed">
+<p>
+              I am an <strong class="text-[var(--neu-text)]">SAP Ariba Upstream Functional Consultant</strong> dedicated to structuring airtight supplier relationship processes and strategic sourcing governance. My functional expertise spans automated supplier onboarding, tiered risk evaluations, high-stakes RFX auction configurations, and structured contract workspaces.
+            </p>
+<p>
+              Through rigorous Business Requirement Document (BRD) authoring, Change Request (CR) triage, and meticulous User Acceptance Testing (UAT), I eliminate procurement workflow bottlenecks. With a background supporting premier enterprise clients—including global mining operations at Anglo American and functional delivery at KFC—I ensure SLA compliance, zero-defect releases, and flawless day-to-day sourcing governance.
+            </p>
+</div>
+<!-- Highlight Competency Matrix -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+<div class="neu-inset-sm p-3.5 rounded-2xl flex flex-col">
+<span class="text-[11px] font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">SLP Lifecycle</span>
+<span class="text-xs font-semibold text-[var(--neu-text)] mt-1">Registration to SPM Reviews</span>
+</div>
+<div class="neu-inset-sm p-3.5 rounded-2xl flex flex-col">
+<span class="text-[11px] font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider">Sourcing Events</span>
+<span class="text-xs font-semibold text-[var(--neu-text)] mt-1">RFI / RFP / Dynamic Auctions</span>
+</div>
+<div class="neu-inset-sm p-3.5 rounded-2xl flex flex-col">
+<span class="text-[11px] font-bold text-indigo-500 uppercase tracking-wider">CLM Workspaces</span>
+<span class="text-xs font-semibold text-[var(--neu-text)] mt-1">Clause Libraries &amp; Approvals</span>
+</div>
+</div>
+</div>
+<!-- Enterprise Rigor Quadrant Card -->
+<div class="lg:col-span-5 neu-inset p-7 sm:p-9 rounded-3xl flex flex-col justify-between gap-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold text-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-[20px]">security</span> Governance Pillars
+            </div>
+<h3 class="text-xl font-bold text-[var(--neu-text)]">Zero Margin for Operational Disruption</h3>
+</div>
+<div class="flex flex-col gap-3.5 text-xs text-[var(--neu-text-muted)]">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-[18px] text-teal-500 mt-0.5">check_circle</span>
+<span><strong class="text-[var(--neu-text)]">Accenture Delivery:</strong> Active upstream AMS consultant on Anglo American multi-region account.</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-[18px] text-teal-500 mt-0.5">check_circle</span>
+<span><strong class="text-[var(--neu-text)]">Cognizant Track Record:</strong> Handled KFC procurement upstream incident resolution with 100% SLA.</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-[18px] text-teal-500 mt-0.5">check_circle</span>
+<span><strong class="text-[var(--neu-text)]">Technical Rigor:</strong> Engineering graduate (8.9 CGPA) with mathematical approach to weighted scoring models.</span>
+</div>
+</div>
+<div class="neu-flat-sm p-4 rounded-2xl flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-[var(--neu-text-muted)]">Compliance Rate</span>
+<span class="text-lg font-black text-teal-600 dark:text-teal-400">100% SLA Adherence</span>
+</div>
+<span class="material-symbols-outlined text-[28px] text-teal-500">task_alt</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: CORE EXPERTISE (INTERACTIVE TABS & PROFICIENCY RINGS) -->
+<section class="w-full flex flex-col gap-10" id="expertise">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="flex flex-col gap-2">
+<span class="text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">Functional Architecture</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-[var(--neu-text)]">Core Upstream SAP Capabilities</h2>
+</div>
+<p class="text-sm text-[var(--neu-text-muted)] max-w-md">
+          Deep architectural knowledge configured across Ariba’s upstream ecosystem to drive compliance and supplier transparency.
+        </p>
+</div>
+<!-- Neumorphic Tab Selection Buttons -->
+<div class="flex flex-wrap gap-3 neu-inset p-2 rounded-2xl">
+<button class="expertise-tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-xl text-xs sm:text-sm font-bold text-sky-600 dark:text-sky-400 neu-button active transition-all flex items-center justify-center gap-2" onclick="selectExpertiseTab('tab-slp', this)" type="button">
+<span class="material-symbols-outlined text-[18px]">how_to_reg</span>
+<span>SAP Ariba SLP</span>
+</button>
+<button class="expertise-tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-xl text-xs sm:text-sm font-bold text-[var(--neu-text-muted)] neu-button transition-all flex items-center justify-center gap-2" onclick="selectExpertiseTab('tab-sourcing', this)" type="button">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+<span>SAP Ariba Sourcing</span>
+</button>
+<button class="expertise-tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-xl text-xs sm:text-sm font-bold text-[var(--neu-text-muted)] neu-button transition-all flex items-center justify-center gap-2" onclick="selectExpertiseTab('tab-clm', this)" type="button">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span>SAP Ariba Contracts (CLM)</span>
+</button>
+</div>
+<!-- TAB CONTENT CONTAINER -->
+<div class="neu-flat p-7 sm:p-10 rounded-3xl min-h-[380px] transition-all">
+<!-- TAB 1: SLP -->
+<div class="expertise-tab-pane flex flex-col lg:flex-row gap-10 items-center justify-between" id="tab-slp">
+<div class="flex-1 flex flex-col gap-5">
+<div class="flex items-center gap-3">
+<span class="w-12 h-12 rounded-2xl neu-inset-sm flex items-center justify-center text-teal-600 dark:text-teal-400">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+</span>
+<div>
+<span class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider">Module 01 • Hands-on</span>
+<h3 class="text-2xl font-extrabold text-[var(--neu-text)]">Supplier Lifecycle &amp; Performance (SLP)</h3>
+</div>
+</div>
+<p class="text-sm text-[var(--neu-text-muted)] leading-relaxed">
+              Formulates robust vendor onboarding architectures, modular registration surveys, risk assessments, and continuous supplier performance evaluation matrices.
+            </p>
+<ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[var(--neu-text)] font-medium">
+<li class="neu-inset-sm p-3 rounded-xl flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-teal-500">check</span> Supplier Registration &amp; Questionnaire logic
+              </li>
+<li class="neu-inset-sm p-3 rounded-xl flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-teal-500">check</span> Commodity/Region Tiered Qualification
+              </li>
+<li class="neu-inset-sm p-3 rounded-xl flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-teal-500">check</span> SPM Scorecard Reviews &amp; KPI Surveys
+              </li>
+<li class="neu-inset-sm p-3 rounded-xl flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-teal-500">check</span> Multi-tier approval flows &amp; vendor records
+              </li>
+</ul>
+</div>
+<!-- Animated Proficiency Gauge (Soft UI Circle) -->
+<div class="w-48 h-48 neu-inset rounded-full flex flex-col items-center justify-center relative p-4">
+<div class="w-36 h-36 neu-flat rounded-full flex flex-col items-center justify-center">
+<span class="text-3xl font-black text-teal-600 dark:text-teal-400">95%</span>
+<span class="text-[10px] font-extrabold uppercase tracking-wider text-[var(--neu-text-muted)]">Hands-on</span>
+</div>
+</div>
+</div>
+<!-- TAB 2: SOURCING -->
+<div class="expertise-tab-pane hidden flex flex-col lg:flex-row gap-10 items-center justify-between" id="tab-sourcing">
+<div class="flex-1 flex flex-col gap-5">
+<div class="flex items-center gap-3">
+<span class="w-12 h-12 rounded-2xl neu-inset-sm flex items-center justify-center text-sky-600 dark:text-sky-400">
+<span class="material-symbols-outlined text-[24px]">gavel</span>
+</span>
+<div>
+<span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">Module 02 • Hands-on</span>
+<h3 class="text-2xl font-extrabold text-[var(--neu-text)]">Strategic Sourcing &amp; e-Auctions</h3>
+</div>
+</div>
+<p class="text-sm text-[var(--neu-text-muted)] leading-relaxed">
+              Formulation of competitive e-RFX events, weighted scoring configurations, reverse auctions with customized bidding rules, and award scenario analysis.
+            </p>
+<ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[var(--neu-text)] font-medium">
+<li class="neu-inset-sm p-3 rounded-xl flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-sky-500">check</span> Full lifecycle RFI, RFP, RFQ events
+              </li>
+<li class="neu-inset-sm p-3 rounded-xl flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-sky-500">check</span> English Reverse &amp; Forward dynamic auctions
+              </li>
+<li class="neu-inset-sm p-3 rounded-xl flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-sky-500">check</span> Pricing sheet limits &amp; reserve price logic
+              </li>
+<li class="neu-inset-sm p-3 rounded-xl flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-sky-500">check</span> Multi-criteria weighted bid evaluation
+              </li>
+</ul>
+</div>
+<!-- Gauge -->
+<div class="w-48 h-48 neu-inset rounded-full flex flex-col items-center justify-center relative p-4">
+<div class="w-36 h-36 neu-flat rounded-full flex flex-col items-center justify-center">
+<span class="text-3xl font-black text-sky-600 dark:text-sky-400">92%</span>
+<span class="text-[10px] font-extrabold uppercase tracking-wider text-[var(--neu-text-muted)]">Hands-on</span>
+</div>
+</div>
+</div>
+<!-- TAB 3: CLM -->
+<div class="expertise-tab-pane hidden flex flex-col lg:flex-row gap-10 items-center justify-between" id="tab-clm">
+<div class="flex-1 flex flex-col gap-5">
+<div class="flex items-center gap-3">
+<span class="w-12 h-12 rounded-2xl neu-inset-sm flex items-center justify-center text-indigo-500">
+<span class="material-symbols-outlined text-[24px]">contract</span>
+</span>
+<div>
+<span class="text-xs font-bold text-indigo-500 uppercase tracking-wider">Module 03 • Certified Implementation</span>
+<h3 class="text-2xl font-extrabold text-[var(--neu-text)]">SAP Ariba Contracts (CLM)</h3>
+</div>
+</div>
+<p class="text-sm text-[var(--neu-text-muted)] leading-relaxed">
+              Standardized contract workspace hierarchies, corporate Clause Library governance, task review loops, and digital amendment lifecycles.
+            </p>
+<ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[var(--neu-text)] font-medium">
+<li class="neu-inset-sm p-3 rounded-xl flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-indigo-500">check</span> Contract Workspaces (Procurement &amp; Sales)
+              </li>
+<li class="neu-inset-sm p-3 rounded-xl flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-indigo-500">check</span> Clause Library &amp; mandatory legal logic
+              </li>
+<li class="neu-inset-sm p-3 rounded-xl flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-indigo-500">check</span> Task automation, review &amp; sign-off loops
+              </li>
+<li class="neu-inset-sm p-3 rounded-xl flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-indigo-500">check</span> Amendment flows &amp; repository archiving
+              </li>
+</ul>
+</div>
+<!-- Gauge -->
+<div class="w-48 h-48 neu-inset rounded-full flex flex-col items-center justify-center relative p-4">
+<div class="w-36 h-36 neu-flat rounded-full flex flex-col items-center justify-center">
+<span class="text-3xl font-black text-indigo-500">90%</span>
+<span class="text-[10px] font-extrabold uppercase tracking-wider text-[var(--neu-text-muted)]">Certified</span>
+</div>
+</div>
+</div>
+</div>
+<!-- RAISED FUNCTIONAL DELIVERY STRIP -->
+<div class="neu-flat p-6 sm:p-8 rounded-3xl flex flex-col gap-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-black/5 dark:border-white/5 pb-4">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[22px] text-sky-600 dark:text-sky-400">task</span>
+<span class="text-base font-extrabold text-[var(--neu-text)]">Functional Delivery &amp; Operational Rigor</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider text-[var(--neu-text-muted)]">Enterprise Methodology</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="neu-inset-sm p-4 rounded-2xl flex flex-col gap-1.5">
+<span class="text-xs font-bold text-sky-600 dark:text-sky-400">BRD &amp; CR Validation</span>
+<span class="text-[11px] text-[var(--neu-text-muted)] leading-tight">Translating complex business pain points into watertight functional upstream specs.</span>
+</div>
+<div class="neu-inset-sm p-4 rounded-2xl flex flex-col gap-1.5">
+<span class="text-xs font-bold text-teal-600 dark:text-teal-400">UAT Scripting &amp; Signoff</span>
+<span class="text-[11px] text-[var(--neu-text-muted)] leading-tight">End-to-end positive and negative test scenario orchestration with zero defects.</span>
+</div>
+<div class="neu-inset-sm p-4 rounded-2xl flex flex-col gap-1.5">
+<span class="text-xs font-bold text-indigo-500">Root Cause Analysis</span>
+<span class="text-[11px] text-[var(--neu-text-muted)] leading-tight">Proactive incident mitigation preventing recurring upstream transactional exceptions.</span>
+</div>
+<div class="neu-inset-sm p-4 rounded-2xl flex flex-col gap-1.5">
+<span class="text-xs font-bold text-amber-500">SolMan &amp; ServiceNow</span>
+<span class="text-[11px] text-[var(--neu-text-muted)] leading-tight">SLA tracking, configuration documentation updates, and standard SOP creation.</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: EXPERIENCE TIMELINE WITH PROGRESSIVE SPINE -->
+<section class="w-full flex flex-col gap-10" id="experience">
+<div class="flex flex-col gap-2">
+<span class="text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">Career Track Record</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-[var(--neu-text)]">Professional Enterprise Engagements</h2>
+</div>
+<div class="relative flex flex-col gap-10 pl-6 sm:pl-10">
+<!-- Progressive Vertical Spine -->
+<div class="absolute left-2.5 sm:left-4 top-4 bottom-4 w-1 rounded-full neu-inset">
+<div class="w-full bg-gradient-to-b from-sky-500 via-teal-500 to-indigo-500 rounded-full h-1/2 transition-all duration-300" id="timeline-spine-fill"></div>
+</div>
+<!-- ITEM 1: ACCENTURE (ANGLO AMERICAN) -->
+<div class="relative flex items-start gap-6 group">
+<!-- Pulsing Milestone Node -->
+<div class="absolute -left-6 sm:-left-9 top-6 w-6 h-6 rounded-full neu-flat flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
+</div>
+<div class="w-full neu-flat p-6 sm:p-8 rounded-3xl flex flex-col gap-4 group-hover:-translate-y-1 transition-transform">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-black/5 dark:border-white/5 pb-3">
+<div class="flex flex-col">
+<div class="flex items-center gap-3">
+<h3 class="text-lg sm:text-xl font-extrabold text-[var(--neu-text)]">Application Development Associate (SAP Ariba Upstream)</h3>
+<span class="neu-inset-sm px-2.5 py-0.5 text-[10px] font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">Current</span>
+</div>
+<div class="flex items-center gap-2 text-xs font-semibold text-[var(--neu-text-muted)] mt-1">
+<span class="text-sky-600 dark:text-sky-400 font-bold">Accenture</span>
+<span>•</span>
+<span>Enterprise Client: Anglo American</span>
+</div>
+</div>
+<span class="neu-inset-sm px-3 py-1 text-xs font-bold text-[var(--neu-text-muted)]">Jan 2025 – Present</span>
+</div>
+<ul class="flex flex-col gap-2.5 text-xs sm:text-sm text-[var(--neu-text-muted)]">
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-sky-500 mt-0.5 shrink-0">arrow_right_alt</span>
+<span>Deliver dedicated SAP Ariba Upstream application management, handling critical SLP registration queues, sourcing event monitoring, and contract approval workflows for Anglo American.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-sky-500 mt-0.5 shrink-0">arrow_right_alt</span>
+<span>Analyze, document, and triage functional Change Requests (CR) to adapt supplier qualification forms and dynamic event templates to regional mining governance criteria.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-sky-500 mt-0.5 shrink-0">arrow_right_alt</span>
+<span>Collaborate directly with global business stakeholders to maintain SLA compliance, execute root cause analysis on recurring upstream exceptions, and author comprehensive knowledge base articles.</span>
+</li>
+</ul>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="neu-inset-sm px-3 py-1 text-[11px] font-semibold text-[var(--neu-text)]">Anglo American Support</span>
+<span class="neu-inset-sm px-3 py-1 text-[11px] font-semibold text-[var(--neu-text)]">SLP Workflow Optimization</span>
+<span class="neu-inset-sm px-3 py-1 text-[11px] font-semibold text-[var(--neu-text)]">Change Request Triage</span>
+<span class="neu-inset-sm px-3 py-1 text-[11px] font-semibold text-[var(--neu-text)]">ServiceNow ITSM</span>
+</div>
+</div>
+</div>
+<!-- ITEM 2: COGNIZANT (KFC) -->
+<div class="relative flex items-start gap-6 group">
+<div class="absolute -left-6 sm:-left-9 top-6 w-6 h-6 rounded-full neu-flat flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-teal-500"></span>
+</div>
+<div class="w-full neu-flat p-6 sm:p-8 rounded-3xl flex flex-col gap-4 group-hover:-translate-y-1 transition-transform">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-black/5 dark:border-white/5 pb-3">
+<div class="flex flex-col">
+<h3 class="text-lg sm:text-xl font-extrabold text-[var(--neu-text)]">Program Analyst (SAP Functional Support)</h3>
+<div class="flex items-center gap-2 text-xs font-semibold text-[var(--neu-text-muted)] mt-1">
+<span class="text-teal-600 dark:text-teal-400 font-bold">Cognizant</span>
+<span>•</span>
+<span>Enterprise Client: KFC</span>
+</div>
+</div>
+<span class="neu-inset-sm px-3 py-1 text-xs font-bold text-[var(--neu-text-muted)]">Jul 2024 – Dec 2024</span>
+</div>
+<ul class="flex flex-col gap-2.5 text-xs sm:text-sm text-[var(--neu-text-muted)]">
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-teal-500 mt-0.5 shrink-0">arrow_right_alt</span>
+<span>Provided functional support across upstream procurement workflows, ensuring uninterrupted supplier data synchronization and event continuity for KFC operations.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-teal-500 mt-0.5 shrink-0">arrow_right_alt</span>
+<span>Conducted structured incident triage, defect logging, and root cause investigation within tight SLA parameters, preventing sourcing delays during high-volume periods.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-teal-500 mt-0.5 shrink-0">arrow_right_alt</span>
+<span>Assisted lead architects in regression testing and functional verification during monthly maintenance releases and template enhancements.</span>
+</li>
+</ul>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="neu-inset-sm px-3 py-1 text-[11px] font-semibold text-[var(--neu-text)]">KFC Global Account</span>
+<span class="neu-inset-sm px-3 py-1 text-[11px] font-semibold text-[var(--neu-text)]">Incident Management</span>
+<span class="neu-inset-sm px-3 py-1 text-[11px] font-semibold text-[var(--neu-text)]">UAT Verification</span>
+</div>
+</div>
+</div>
+<!-- ITEM 3: COGNIZANT INTERNSHIP -->
+<div class="relative flex items-start gap-6 group">
+<div class="absolute -left-6 sm:-left-9 top-6 w-6 h-6 rounded-full neu-flat flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+</div>
+<div class="w-full neu-flat p-6 sm:p-8 rounded-3xl flex flex-col gap-4 group-hover:-translate-y-1 transition-transform">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-black/5 dark:border-white/5 pb-3">
+<div class="flex flex-col">
+<h3 class="text-lg sm:text-xl font-extrabold text-[var(--neu-text)]">SAP Functional Intern</h3>
+<span class="text-xs font-semibold text-[var(--neu-text-muted)] mt-1">Cognizant Technology Solutions</span>
+</div>
+<span class="neu-inset-sm px-3 py-1 text-xs font-bold text-[var(--neu-text-muted)]">Dec 2023 – Apr 2024</span>
+</div>
+<ul class="flex flex-col gap-2.5 text-xs sm:text-sm text-[var(--neu-text-muted)]">
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-indigo-500 mt-0.5 shrink-0">arrow_right_alt</span>
+<span>Underwent intensive functional training in SAP Ariba Upstream modules (SLP, Sourcing, CLM) and foundational SAP MM Procure-to-Pay processes.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-indigo-500 mt-0.5 shrink-0">arrow_right_alt</span>
+<span>Configured simulated upstream environments including questionnaire builders, sourcing event pricing sheets, and multi-tier approval hierarchies.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-indigo-500 mt-0.5 shrink-0">arrow_right_alt</span>
+<span>Shadowed senior functional consultants on client requirement discovery workshops and BRD documentation structures.</span>
+</li>
+</ul>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="neu-inset-sm px-3 py-1 text-[11px] font-semibold text-[var(--neu-text)]">SAP Upstream Foundation</span>
+<span class="neu-inset-sm px-3 py-1 text-[11px] font-semibold text-[var(--neu-text)]">Template Configuration</span>
+<span class="neu-inset-sm px-3 py-1 text-[11px] font-semibold text-[var(--neu-text)]">BRD Shadowing</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: FEATURED PROJECT (CASE STUDY NEUMORPHIC CARD) -->
+<section class="w-full flex flex-col gap-10" id="projects">
+<div class="flex flex-col gap-2">
+<span class="text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">Independent Delivery</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-[var(--neu-text)]">Featured Implementation Case Study</h2>
+</div>
+<div class="neu-flat p-6 sm:p-10 rounded-3xl flex flex-col gap-8">
+<!-- Banner Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-black/5 dark:border-white/5 pb-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="neu-inset-sm px-3 py-1 text-[10px] font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider">Completed Independently</span>
+<span class="neu-flat-sm px-3 py-1 text-[10px] font-bold text-sky-600 dark:text-sky-400">Functional Proof of Concept</span>
+</div>
+<h3 class="text-xl sm:text-2xl font-black text-[var(--neu-text)]">Greenfield SAP Ariba Upstream Implementation (Test Project)</h3>
+<p class="text-xs sm:text-sm text-[var(--neu-text-muted)]">
+              Comprehensive end-to-end setup of SLP, Sourcing, and Contracts for a simulated multinational enterprise.
+            </p>
+</div>
+<div class="w-14 h-14 neu-inset rounded-2xl flex items-center justify-center text-sky-500 shrink-0">
+<span class="material-symbols-outlined text-[32px]">architecture</span>
+</div>
+</div>
+<!-- Interactive Case Tabs Navigation -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<button class="case-nav-btn py-3 px-4 rounded-xl text-xs font-bold neu-button active text-sky-600 dark:text-sky-400" onclick="showCasePane('case-objective', this)">
+            1. Objective
+          </button>
+<button class="case-nav-btn py-3 px-4 rounded-xl text-xs font-bold neu-button text-[var(--neu-text-muted)]" onclick="showCasePane('case-methodology', this)">
+            2. Methodology &amp; Role
+          </button>
+<button class="case-nav-btn py-3 px-4 rounded-xl text-xs font-bold neu-button text-[var(--neu-text-muted)]" onclick="showCasePane('case-scope', this)">
+            3. Scope Details
+          </button>
+<button class="case-nav-btn py-3 px-4 rounded-xl text-xs font-bold neu-button text-[var(--neu-text-muted)]" onclick="showCasePane('case-outcomes', this)">
+            4. Outcome &amp; Deliverables
+          </button>
+</div>
+<!-- Case Pane 1: Objective -->
+<div class="case-pane flex flex-col gap-4" id="case-objective">
+<div class="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold text-sm">
+<span class="material-symbols-outlined text-[20px]">flag</span> Primary Business Objective
+          </div>
+<p class="text-sm text-[var(--neu-text-muted)] leading-relaxed">
+            Design and stand up a fully functional, greenfield SAP Ariba Upstream tenant from the ground up to establish compliant supplier governance, standardized bidding protocols, and digital contract tracking for direct and indirect procurement categories.
+          </p>
+<div class="neu-inset-sm p-4 rounded-2xl text-xs text-[var(--neu-text-muted)] flex flex-col gap-1">
+<strong class="text-[var(--neu-text)] uppercase tracking-wider text-[11px]">Implementation Constraints:</strong>
+<span>Focus exclusively on native upstream functional features—establishing rigorous approval flows, validation logic, and multi-tier supplier evaluation without auxiliary manual interfaces.</span>
+</div>
+</div>
+<!-- Case Pane 2: Methodology & Role -->
+<div class="case-pane hidden flex flex-col gap-4" id="case-methodology">
+<div class="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold text-sm">
+<span class="material-symbols-outlined text-[20px]">person_check</span> Lead Functional Consultant (Sole Contributor)
+          </div>
+<p class="text-sm text-[var(--neu-text-muted)] leading-relaxed">
+            Acted as the sole architect executing end-to-end tasks: translated business requirements into upstream configuration parameters, authored functional requirement specifications, executed prototype walkthroughs, and validated complete test scenarios.
+          </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-medium text-[var(--neu-text)]">
+<div class="neu-inset-sm p-3 rounded-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-teal-500">check</span> Custom master data mapping matrix created
+            </div>
+<div class="neu-inset-sm p-3 rounded-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-teal-500">check</span> 6 distinct approval rule trees configured
+            </div>
+</div>
+</div>
+<!-- Case Pane 3: Scope Details -->
+<div class="case-pane hidden flex flex-col gap-4" id="case-scope">
+<div class="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold text-sm">
+<span class="material-symbols-outlined text-[20px]">tune</span> Detailed Configuration Scope
+          </div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="neu-inset-sm p-4 rounded-2xl flex flex-col gap-2">
+<span class="text-xs font-bold text-sky-600 dark:text-sky-400">SLP Configuration</span>
+<p class="text-[11px] text-[var(--neu-text-muted)]">Formulated Registration Surveys with conditional questions, Qualification matrices across 4 commodities, and SPM scorecard KPIs.</p>
+</div>
+<div class="neu-inset-sm p-4 rounded-2xl flex flex-col gap-2">
+<span class="text-xs font-bold text-teal-600 dark:text-teal-400">Sourcing Templates</span>
+<p class="text-[11px] text-[var(--neu-text-muted)]">Standardized RFP and English Reverse Auction templates with baseline prices, bidding increments, and formula-driven weighted scoring.</p>
+</div>
+<div class="neu-inset-sm p-4 rounded-2xl flex flex-col gap-2">
+<span class="text-xs font-bold text-indigo-500">Contract Workspaces</span>
+<p class="text-[11px] text-[var(--neu-text-muted)]">Authored procurement contract workspace hierarchies, dynamic approval tasks, and clause libraries with mandatory indemnity conditions.</p>
+</div>
+</div>
+</div>
+<!-- Case Pane 4: Outcomes -->
+<div class="case-pane hidden flex flex-col gap-4" id="case-outcomes">
+<div class="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold text-sm">
+<span class="material-symbols-outlined text-[20px]">verified</span> Validated Functional Results
+          </div>
+<p class="text-sm text-[var(--neu-text-muted)] leading-relaxed">
+            Successfully executed 100% of end-to-end test scenarios with zero workflow interruptions: from initial supplier self-registration, through multi-round competitive e-Auctioning, to award handoff into a generated, legally approved contract workspace.
+          </p>
+<div class="neu-flat-sm p-4 rounded-2xl text-xs text-[var(--neu-text)] flex items-center justify-between">
+<span><strong>Deliverables Completed:</strong> BRD documentation, Traceability Matrix, UAT execution scripts, Upstream Configuration Guide.</span>
+<span class="material-symbols-outlined text-[22px] text-teal-500">done_all</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: INTERACTIVE PROCESS FLOWS (CLICKABLE STEPS + TOOLTIPS) -->
+<section class="w-full flex flex-col gap-10" id="process">
+<div class="flex flex-col gap-2">
+<span class="text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">Functional Topologies</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-[var(--neu-text)]">Standard Upstream Process Workflows</h2>
+<p class="text-sm text-[var(--neu-text-muted)] max-w-2xl">
+          Visual representation of standardized lifecycle execution governed through upstream SAP Ariba templates and approval controls.
+        </p>
+</div>
+<!-- WORKFLOW 1: SUPPLIER LIFECYCLE (SLP) -->
+<div class="neu-flat p-6 sm:p-9 rounded-3xl flex flex-col gap-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-black/5 dark:border-white/5 pb-3">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[24px] text-teal-600 dark:text-teal-400">account_tree</span>
+<h3 class="text-base sm:text-lg font-bold text-[var(--neu-text)]">Process Flow 1: Supplier Lifecycle &amp; Performance (SLP)</h3>
+</div>
+<span class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider">5-Stage Progressive Governance</span>
+</div>
+<!-- 5 Interactive Horizontal Steps -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+<!-- Step 1 -->
+<div class="process-node neu-inset p-4 rounded-2xl flex flex-col gap-2 hover:scale-[1.02] transition-transform cursor-pointer" onclick="highlightProcessStep(this)">
+<div class="flex items-center justify-between">
+<span class="w-7 h-7 rounded-xl neu-flat flex items-center justify-center font-bold text-xs text-sky-500">1</span>
+<span class="material-symbols-outlined text-[18px] text-[var(--neu-text-muted)]">person_add</span>
+</div>
+<span class="text-sm font-bold text-[var(--neu-text)]">Register</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-normal">Supplier self-registration questionnaire submission &amp; baseline contact capture.</p>
+</div>
+<!-- Step 2 -->
+<div class="process-node neu-inset p-4 rounded-2xl flex flex-col gap-2 hover:scale-[1.02] transition-transform cursor-pointer" onclick="highlightProcessStep(this)">
+<div class="flex items-center justify-between">
+<span class="w-7 h-7 rounded-xl neu-flat flex items-center justify-center font-bold text-xs text-sky-500">2</span>
+<span class="material-symbols-outlined text-[18px] text-[var(--neu-text-muted)]">verified</span>
+</div>
+<span class="text-sm font-bold text-[var(--neu-text)]">Qualify</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-normal">Category, geographic region &amp; business unit compliance matrix review.</p>
+</div>
+<!-- Step 3 -->
+<div class="process-node neu-inset p-4 rounded-2xl flex flex-col gap-2 hover:scale-[1.02] transition-transform cursor-pointer" onclick="highlightProcessStep(this)">
+<div class="flex items-center justify-between">
+<span class="w-7 h-7 rounded-xl neu-flat flex items-center justify-center font-bold text-xs text-sky-500">3</span>
+<span class="material-symbols-outlined text-[18px] text-[var(--neu-text-muted)]">check_circle</span>
+</div>
+<span class="text-sm font-bold text-[var(--neu-text)]">Onboard</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-normal">Vendor master activation &amp; internal approval hierarchy signoff.</p>
+</div>
+<!-- Step 4 -->
+<div class="process-node neu-inset p-4 rounded-2xl flex flex-col gap-2 hover:scale-[1.02] transition-transform cursor-pointer" onclick="highlightProcessStep(this)">
+<div class="flex items-center justify-between">
+<span class="w-7 h-7 rounded-xl neu-flat flex items-center justify-center font-bold text-xs text-sky-500">4</span>
+<span class="material-symbols-outlined text-[18px] text-[var(--neu-text-muted)]">shield</span>
+</div>
+<span class="text-sm font-bold text-[var(--neu-text)]">Risk Assess</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-normal">Periodic risk evaluations, questionnaires, financial checks &amp; surveys.</p>
+</div>
+<!-- Step 5 -->
+<div class="process-node neu-inset p-4 rounded-2xl flex flex-col gap-2 hover:scale-[1.02] transition-transform cursor-pointer" onclick="highlightProcessStep(this)">
+<div class="flex items-center justify-between">
+<span class="w-7 h-7 rounded-xl neu-flat flex items-center justify-center font-bold text-xs text-teal-500">5</span>
+<span class="material-symbols-outlined text-[18px] text-teal-500">trending_up</span>
+</div>
+<span class="text-sm font-bold text-[var(--neu-text)]">Performance</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-normal">SPM scorecard reviews, KPI scoring surveys, segmentation &amp; tier tracking.</p>
+</div>
+</div>
+</div>
+<!-- WORKFLOW 2: SOURCE-TO-CONTRACT (S2C) -->
+<div class="neu-flat p-6 sm:p-9 rounded-3xl flex flex-col gap-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-black/5 dark:border-white/5 pb-3">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[24px] text-sky-600 dark:text-sky-400">hub</span>
+<h3 class="text-base sm:text-lg font-bold text-[var(--neu-text)]">Process Flow 2: Source-to-Contract (S2C) Upstream Cycle</h3>
+</div>
+<span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">Seamless Upstream Handshake</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+<div class="process-node neu-inset p-4 rounded-2xl flex flex-col gap-2 hover:scale-[1.02] transition-transform cursor-pointer" onclick="highlightProcessStep(this)">
+<div class="flex items-center justify-between">
+<span class="w-7 h-7 rounded-xl neu-flat flex items-center justify-center font-bold text-xs text-sky-500">1</span>
+<span class="material-symbols-outlined text-[18px] text-[var(--neu-text-muted)]">gavel</span>
+</div>
+<span class="text-sm font-bold text-[var(--neu-text)]">Sourcing Event</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-normal">RFI/RFP/Auction setup with bidding limits, criteria &amp; supplier invites.</p>
+</div>
+<div class="process-node neu-inset p-4 rounded-2xl flex flex-col gap-2 hover:scale-[1.02] transition-transform cursor-pointer" onclick="highlightProcessStep(this)">
+<div class="flex items-center justify-between">
+<span class="w-7 h-7 rounded-xl neu-flat flex items-center justify-center font-bold text-xs text-sky-500">2</span>
+<span class="material-symbols-outlined text-[18px] text-[var(--neu-text-muted)]">trophy</span>
+</div>
+<span class="text-sm font-bold text-[var(--neu-text)]">Award Phase</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-normal">Weighted score calculation, pricing optimization &amp; award scenario finalization.</p>
+</div>
+<div class="process-node neu-inset p-4 rounded-2xl flex flex-col gap-2 hover:scale-[1.02] transition-transform cursor-pointer" onclick="highlightProcessStep(this)">
+<div class="flex items-center justify-between">
+<span class="w-7 h-7 rounded-xl neu-flat flex items-center justify-center font-bold text-xs text-sky-500">3</span>
+<span class="material-symbols-outlined text-[18px] text-[var(--neu-text-muted)]">folder_open</span>
+</div>
+<span class="text-sm font-bold text-[var(--neu-text)]">Workspace Gen</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-normal">Direct automated workspace generation pulling terms, pricing &amp; supplier master.</p>
+</div>
+<div class="process-node neu-inset p-4 rounded-2xl flex flex-col gap-2 hover:scale-[1.02] transition-transform cursor-pointer" onclick="highlightProcessStep(this)">
+<div class="flex items-center justify-between">
+<span class="w-7 h-7 rounded-xl neu-flat flex items-center justify-center font-bold text-xs text-sky-500">4</span>
+<span class="material-symbols-outlined text-[18px] text-[var(--neu-text-muted)]">draw</span>
+</div>
+<span class="text-sm font-bold text-[var(--neu-text)]">Approval &amp; Sign</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-normal">Clause library validation, redline task loop, and executive e-signature.</p>
+</div>
+<div class="process-node neu-inset p-4 rounded-2xl flex flex-col gap-2 hover:scale-[1.02] transition-transform cursor-pointer" onclick="highlightProcessStep(this)">
+<div class="flex items-center justify-between">
+<span class="w-7 h-7 rounded-xl neu-flat flex items-center justify-center font-bold text-xs text-indigo-500">5</span>
+<span class="material-symbols-outlined text-[18px] text-indigo-500">inventory_2</span>
+</div>
+<span class="text-sm font-bold text-[var(--neu-text)]">Active Repository</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-normal">Locked active repository with automated expiry alerts &amp; renewal tasks.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: CERTIFICATIONS & EDUCATION -->
+<section class="w-full flex flex-col gap-10" id="certifications">
+<div class="flex flex-col gap-2">
+<span class="text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">Qualifications &amp; Credentials</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-[var(--neu-text)]">Certifications &amp; Academic Background</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- 4 Raised Neumorphic Certification Cards (8 cols) -->
+<div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+<!-- Cert 1 -->
+<a href="https://www.credly.com/badges/bb8bc4cc-53fb-4547-be48-20cfff0989dd">
+<div class="neu-flat p-6 rounded-3xl flex flex-col justify-between gap-4 hover:-translate-y-1 transition-transform">
+<div class="flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 neu-inset-sm rounded-xl flex items-center justify-center text-sky-500">
+<span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+</span>
+<span class="neu-inset-sm px-2.5 py-0.5 text-[10px] font-bold text-sky-600 dark:text-sky-400 uppercase">SAP Official</span>
+</div>
+<h3 class="text-base font-extrabold text-[var(--neu-text)]">SAP Ariba Contract Management</h3>
+<span class="text-xs font-semibold text-sky-600 dark:text-sky-400">Implementation Basic</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-relaxed">
+                Mastery of contract workspace architecture, clause library management, project templates, and task workflows.
+              </p>
+</div>
+<div class="flex items-center gap-1.5 text-[11px] font-semibold text-teal-600 dark:text-teal-400">
+<span class="material-symbols-outlined text-[16px]">verified</span> Verified Implementation Skill
+            </div>
+</div></a>
+<!-- Cert 2 -->
+<a href="https://www.credly.com/badges/02ff3190-f7c1-41bd-b5c2-1cc675be011e">
+<div class="neu-flat p-6 rounded-3xl flex flex-col justify-between gap-4 hover:-translate-y-1 transition-transform">
+<div class="flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 neu-inset-sm rounded-xl flex items-center justify-center text-teal-500">
+<span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+</span>
+<span class="neu-inset-sm px-2.5 py-0.5 text-[10px] font-bold text-teal-600 dark:text-teal-400 uppercase">SAP Official</span>
+</div>
+<h3 class="text-base font-extrabold text-[var(--neu-text)]">SAP Ariba SLP</h3>
+<span class="text-xs font-semibold text-teal-600 dark:text-teal-400">Implementation Basic</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-relaxed">
+                Certification covering supplier registration, qualification matrices, risk assessments, and SPM surveys.
+              </p>
+</div>
+<div class="flex items-center gap-1.5 text-[11px] font-semibold text-teal-600 dark:text-teal-400">
+<span class="material-symbols-outlined text-[16px]">verified</span> Verified Implementation Skill
+            </div>
+</div></a>
+<!-- Cert 3 -->
+<div class="neu-flat p-6 rounded-3xl flex flex-col justify-between gap-4 hover:-translate-y-1 transition-transform">
+<div class="flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 neu-inset-sm rounded-xl flex items-center justify-center text-indigo-500">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+</span>
+<span class="neu-inset-sm px-2.5 py-0.5 text-[10px] font-bold text-indigo-500 uppercase">Specialization</span>
+</div>
+<h3 class="text-base font-extrabold text-[var(--neu-text)]">SAP Gen AI Certified</h3>
+<span class="text-xs font-semibold text-indigo-500">Emerging Procurement Tech</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-relaxed">
+                Harnessing SAP generative AI capabilities for intelligent procurement analytics and process automation.
+              </p>
+</div>
+<div class="flex items-center gap-1.5 text-[11px] font-semibold text-teal-600 dark:text-teal-400">
+<span class="material-symbols-outlined text-[16px]">verified</span> Modern Applied AI Principles
+            </div>
+</div>
+<!-- Cert 4 -->
+<div class="neu-flat p-6 rounded-3xl flex flex-col justify-between gap-4 hover:-translate-y-1 transition-transform">
+<div class="flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 neu-inset-sm rounded-xl flex items-center justify-center text-amber-500">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</span>
+<span class="neu-inset-sm px-2.5 py-0.5 text-[10px] font-bold text-amber-500 uppercase">Foundational</span>
+</div>
+<h3 class="text-base font-extrabold text-[var(--neu-text)]">SAP MM Training</h3>
+<span class="text-xs font-semibold text-amber-500">P2P Fundamentals</span>
+<p class="text-xs text-[var(--neu-text-muted)] leading-relaxed">
+                Structured functional coursework in Materials Management, purchasing documents, and master data cohesion.
+              </p>
+</div>
+<div class="flex items-center gap-1.5 text-[11px] font-semibold text-teal-600 dark:text-teal-400">
+<span class="material-symbols-outlined text-[16px]">verified</span> Core Procurement Ecosystem Literacy
+            </div>
+</div>
+</div>
+<!-- Academic Degree Card (4 cols) -->
+<div class="lg:col-span-4 neu-flat p-7 sm:p-8 rounded-3xl flex flex-col justify-between gap-6">
+<div class="flex flex-col gap-4">
+<div class="w-12 h-12 neu-inset-sm rounded-2xl flex items-center justify-center text-sky-500">
+<span class="material-symbols-outlined text-[26px]">school</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[11px] font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">Bachelor of Technology</span>
+<h3 class="text-xl font-black text-[var(--neu-text)]">Electrical Engineering</h3>
+<span class="text-xs text-[var(--neu-text-muted)] font-medium mt-0.5">Guru Nanak Institute of Technology</span>
+<span class="text-xs text-[var(--neu-text-muted)]">Graduated: 2023</span>
+</div>
+<!-- Graduation Score Highlight -->
+<div class="neu-inset p-4 rounded-2xl flex items-center justify-between mt-2">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-[var(--neu-text-muted)]">Academic Merit</span>
+<span class="text-xs font-bold text-[var(--neu-text)]">Cumulative CGPA</span>
+</div>
+<div class="text-2xl font-black text-sky-600 dark:text-sky-400">8.9 <span class="text-xs font-normal text-[var(--neu-text-muted)]">/ 10</span></div>
+</div>
+<p class="text-xs text-[var(--neu-text-muted)] leading-relaxed">
+              Quantitative, mathematical, and algorithmic modeling background applied to enterprise systems logic and complex procurement matrices.
+            </p>
+</div>
+<div class="neu-inset-sm p-3 rounded-xl flex items-center gap-2 text-xs font-semibold text-teal-600 dark:text-teal-400">
+<span class="material-symbols-outlined text-[16px]">verified</span> Verified Engineering Graduate
+          </div>
+</div>
+</div>
+</section>
+<!-- SECTION: CONTACT & INQUIRY FORM (INSET INPUTS & DIRECT CHANNELS) -->
+<section class="w-full flex flex-col gap-10" id="contact">
+<div class="flex flex-col gap-2">
+<span class="text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">Recruiter &amp; Advisory Channel</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-[var(--neu-text)]">Get in Touch</h2>
+<p class="text-sm text-[var(--neu-text-muted)] max-w-2xl">
+          Interested in bringing senior upstream precision to your SAP implementation, SLA support engagement, or advisory team? Reach out directly.
+        </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Direct Channels (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-4">
+<div class="neu-flat p-6 sm:p-8 rounded-3xl flex flex-col gap-5">
+<h3 class="text-lg font-bold text-[var(--neu-text)]">Direct Communication</h3>
+<!-- Email -->
+<a class="neu-inset p-4 rounded-2xl flex items-center gap-3.5 hover:scale-[1.02] transition-transform group" href="mailto:Usama.bin.ee.785@gmail.com">
+<div class="w-10 h-10 neu-flat rounded-xl flex items-center justify-center text-sky-500 group-hover:text-teal-500 transition-colors shrink-0">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-[10px] uppercase font-bold text-[var(--neu-text-muted)]">Email Address</span>
+<span class="text-xs sm:text-sm font-bold text-[var(--neu-text)] truncate">Usama.bin.ee.785@gmail.com</span>
+<span class="text-[10px] text-teal-600 dark:text-teal-400">Direct Recruiter Routing</span>
+</div>
+</a>
+<!-- Phone -->
+<a class="neu-inset p-4 rounded-2xl flex items-center gap-3.5 hover:scale-[1.02] transition-transform group" href="tel:+918420537465">
+<div class="w-10 h-10 neu-flat rounded-xl flex items-center justify-center text-teal-500 group-hover:text-sky-500 transition-colors shrink-0">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-[var(--neu-text-muted)]">Mobile &amp; WhatsApp</span>
+<span class="text-xs sm:text-sm font-bold text-[var(--neu-text)]">+91 8420537465</span>
+<span class="text-[10px] text-sky-600 dark:text-sky-400">Available IST Business Hours</span>
+</div>
+</a>
+<!-- LinkedIn -->
+<a class="neu-inset p-4 rounded-2xl flex items-center gap-3.5 hover:scale-[1.02] transition-transform group" href="https://www.linkedin.com/in/usama-bin-kashem-164704203/" rel="noopener noreferrer" target="_blank">
+<div class="w-10 h-10 neu-flat rounded-xl flex items-center justify-center text-indigo-500 group-hover:text-sky-500 transition-colors shrink-0">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-[var(--neu-text-muted)]">LinkedIn Network</span>
+<span class="text-xs sm:text-sm font-bold text-[var(--neu-text)]">Usama Bin Kashem</span>
+<span class="text-[10px] text-indigo-500">Connect Profile</span>
+</div>
+</a>
+<!-- Base -->
+<div class="neu-inset-sm p-4 rounded-2xl flex items-center gap-3.5">
+<div class="w-10 h-10 neu-flat rounded-xl flex items-center justify-center text-[var(--neu-text-muted)] shrink-0">
+<span class="material-symbols-outlined text-[20px]">pin_drop</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-[var(--neu-text-muted)]">Base Location</span>
+<span class="text-xs font-bold text-[var(--neu-text)]">Howrah, West Bengal, India</span>
+<span class="text-[10px] text-[var(--neu-text-muted)]">Open to Remote &amp; Hybrid Relocation</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Inset Neumorphic Contact Form (7 cols) -->
+<div class="lg:col-span-7">
+<form class="neu-flat p-6 sm:p-9 rounded-3xl flex flex-col gap-5" id="portfolio-contact-form" onsubmit="handleRecruiterSubmit(event)">
+<h3 class="text-lg font-bold text-[var(--neu-text)]">Direct Recruiter Inquiry Form</h3>
+<p class="text-xs text-[var(--neu-text-muted)]">Submit your project scope or corporate hiring requisition below. All functional inquiries receive a prompt reply.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Name Input -->
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-[var(--neu-text)]" for="contact-name">Your Name *</label>
+<div class="neu-inset p-3 rounded-2xl">
+<input class="w-full bg-transparent border-0 text-xs sm:text-sm text-[var(--neu-text)] placeholder-[var(--neu-text-muted)] focus:outline-none focus:ring-0 p-0" id="contact-name" placeholder="e.g. Sourcing Director / Lead" required="" type="text"/>
+</div>
+</div>
+<!-- Company Input -->
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-[var(--neu-text)]" for="contact-company">Company Organization *</label>
+<div class="neu-inset p-3 rounded-2xl">
+<input class="w-full bg-transparent border-0 text-xs sm:text-sm text-[var(--neu-text)] placeholder-[var(--neu-text-muted)] focus:outline-none focus:ring-0 p-0" id="contact-company" placeholder="e.g. Global Consulting Firm" required="" type="text"/>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Email Input -->
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-[var(--neu-text)]" for="contact-email">Official Email *</label>
+<div class="neu-inset p-3 rounded-2xl">
+<input class="w-full bg-transparent border-0 text-xs sm:text-sm text-[var(--neu-text)] placeholder-[var(--neu-text-muted)] focus:outline-none focus:ring-0 p-0" id="contact-email" placeholder="you@company.com" required="" type="email"/>
+</div>
+</div>
+<!-- Scope Select -->
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-[var(--neu-text)]" for="contact-role">Engagement Scope *</label>
+<div class="neu-inset p-3 rounded-2xl">
+<select class="w-full bg-transparent border-0 text-xs sm:text-sm text-[var(--neu-text)] focus:outline-none focus:ring-0 p-0 cursor-pointer" id="contact-role">
+<option class="bg-[var(--neu-bg)] text-[var(--neu-text)]" value="Full-time SAP Ariba Consultant">Full-time SAP Ariba Consultant Role</option>
+<option class="bg-[var(--neu-bg)] text-[var(--neu-text)]" value="Upstream Advisory Contract">Upstream Advisory / Implementation Contract</option>
+<option class="bg-[var(--neu-bg)] text-[var(--neu-text)]" value="SLP or Sourcing Support">SLP / Sourcing / CLM Support Engagement</option>
+<option class="bg-[var(--neu-bg)] text-[var(--neu-text)]" value="General Recruiter Inquiry">General Recruiter Sourcing Inquiry</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Message Textarea -->
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-[var(--neu-text)]" for="contact-message">Project Timeline &amp; Upstream Requirements *</label>
+<div class="neu-inset p-3 rounded-2xl">
+<textarea class="w-full bg-transparent border-0 text-xs sm:text-sm text-[var(--neu-text)] placeholder-[var(--neu-text-muted)] focus:outline-none focus:ring-0 p-0 resize-none" id="contact-message" placeholder="Please outline project timeline, target modules (SLP, Sourcing, CLM), location, and scope..." required="" rows="4"></textarea>
+</div>
+</div>
+<!-- Form Actions -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+<button class="neu-button w-full sm:w-auto px-8 py-3.5 rounded-2xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-sky-600 to-teal-600 hover:from-sky-500 hover:to-teal-500 flex items-center justify-center gap-2 shadow-lg shadow-sky-600/20" type="submit">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                Submit Functional Inquiry
+              </button>
+<span class="text-[11px] text-[var(--neu-text-muted)] flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[16px] text-teal-500">lock</span> Confidentiality Respected
+              </span>
+</div>
+<!-- Success Notification -->
+<div class="hidden neu-inset p-4 rounded-2xl flex items-center gap-3 animate-fade-in" id="form-success-banner">
+<span class="material-symbols-outlined text-[24px] text-teal-500">check_circle</span>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-[var(--neu-text)]">Inquiry Transmitted Successfully</span>
+<span class="text-[11px] text-[var(--neu-text-muted)]">Thank you! Your message has been logged. Usama will respond shortly via email or phone.</span>
+</div>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- FLOATING BACK-TO-TOP BUTTON -->
+<button aria-label="Back to Top" class="neu-button fixed bottom-6 right-6 z-40 w-12 h-12 rounded-2xl flex items-center justify-center text-sky-600 dark:text-sky-400 opacity-0 pointer-events-none transition-all duration-300" id="back-to-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+<span class="material-symbols-outlined text-[24px]">arrow_upward</span>
+</button>
+<!-- NEUMORPHIC FOOTER -->
+<footer class="mt-28 border-t border-black/5 dark:border-white/5 py-12 px-4 sm:px-6">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex flex-col items-center md:items-start gap-1">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 neu-inset-sm flex items-center justify-center font-extrabold text-sky-600 dark:text-sky-400 text-xs rounded-xl">UBK</span>
+<span class="font-bold text-sm text-[var(--neu-text)]">Usama Bin Kashem</span>
+<span class="text-xs text-[var(--neu-text-muted)]">| SAP Ariba Advisory</span>
+</div>
+<p class="text-xs text-[var(--neu-text-muted)] text-center md:text-left mt-1">
+          © 2025 Usama Bin Kashem. Enterprise Procurement Architecture &amp; Transformation.
+        </p>
+</div>
+<!-- Quick Footer Links -->
+<div class="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold text-[var(--neu-text-muted)]">
+<a class="hover:text-sky-600 transition-colors" href="#about">About</a>
+<a class="hover:text-sky-600 transition-colors" href="#expertise">Expertise</a>
+<a class="hover:text-sky-600 transition-colors" href="#experience">Experience</a>
+<a class="hover:text-sky-600 transition-colors" href="#projects">Projects</a>
+<a class="hover:text-sky-600 transition-colors" href="#process">Process</a>
+<a class="hover:text-sky-600 transition-colors" href="#certifications">Certifications</a>
+<a class="hover:text-sky-600 transition-colors" href="#contact">Contact</a>
+</div>
+<!-- Direct Quick Connect Icons -->
+<div class="flex items-center gap-3">
+<a aria-label="Email" class="w-10 h-10 neu-button rounded-xl flex items-center justify-center text-[var(--neu-text-muted)] hover:text-sky-500" href="mailto:Usama.bin.ee.785@gmail.com">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</a>
+<a aria-label="Phone" class="w-10 h-10 neu-button rounded-xl flex items-center justify-center text-[var(--neu-text-muted)] hover:text-teal-500" href="tel:+918420537465">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+<a aria-label="LinkedIn" class="w-10 h-10 neu-button rounded-xl flex items-center justify-center text-[var(--neu-text-muted)] hover:text-indigo-500" href="https://linkedin.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</a>
+</div>
+</div>
+</footer>
+<!-- CLIENT-SIDE SCRIPTING: NEUMORPHIC THEME, TYPING, COUNTERS, TABS & INTERACTIONS -->
+<script>
+    // 1. Preloader dismissal
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('neu-preloader');
+      if (preloader) {
+        preloader.classList.add('opacity-0', 'pointer-events-none');
+        setTimeout(() => preloader.remove(), 600);
+      }
+    });
+
+    // 2. Persistent Dark/Light Mode Switch
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    const initTheme = () => {
+      const stored = localStorage.getItem('ubk_theme');
+      if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    };
+    initTheme();
+
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('ubk_theme', isDark ? 'dark' : 'light');
+      });
+    }
+
+    // 3. Scroll Progress Indicator & Back-to-Top Button
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const bar = document.getElementById('scroll-progress-fill');
+      if (bar) bar.style.width = scrolled + '%';
+
+      // Back to top visibility
+      const topBtn = document.getElementById('back-to-top-btn');
+      if (topBtn) {
+        if (winScroll > 400) {
+          topBtn.classList.remove('opacity-0', 'pointer-events-none');
+          topBtn.classList.add('opacity-100', 'pointer-events-auto');
+        } else {
+          topBtn.classList.add('opacity-0', 'pointer-events-none');
+          topBtn.classList.remove('opacity-100', 'pointer-events-auto');
+        }
+      }
+
+      // Update timeline progressive spine height
+      const timelineFill = document.getElementById('timeline-spine-fill');
+      if (timelineFill) {
+        const expSec = document.getElementById('experience');
+        if (expSec) {
+          const rect = expSec.getBoundingClientRect();
+          const progress = Math.min(Math.max((window.innerHeight - rect.top) / rect.height, 0), 1);
+          timelineFill.style.height = (progress * 100) + '%';
+        }
+      }
+    });
+
+    // 4. Hero Typing Animation (Cycles SLP, Sourcing, Contract Management)
+    const typingPhrases = ["Supplier Lifecycle & Performance (SLP)", "Strategic Sourcing & e-Auctions", "Contract Lifecycle Management (CLM)"];
+    let phraseIdx = 0;
+    let letterIdx = 0;
+    let isDeleting = false;
+    const typedElement = document.getElementById('typed-text');
+
+    function typeLoop() {
+      if (!typedElement) return;
+      const currentPhrase = typingPhrases[phraseIdx];
+      if (isDeleting) {
+        typedElement.textContent = currentPhrase.substring(0, letterIdx - 1);
+        letterIdx--;
+      } else {
+        typedElement.textContent = currentPhrase.substring(0, letterIdx + 1);
+        letterIdx++;
+      }
+
+      let speed = isDeleting ? 40 : 80;
+      if (!isDeleting && letterIdx === currentPhrase.length) {
+        speed = 2200; // pause at end
+        isDeleting = true;
+      } else if (isDeleting && letterIdx === 0) {
+        isDeleting = false;
+        phraseIdx = (phraseIdx + 1) % typingPhrases.length;
+        speed = 400;
+      }
+      setTimeout(typeLoop, speed);
+    }
+    typeLoop();
+
+    // 5. Animated Counter Observers
+    const counters = document.querySelectorAll('.stat-counter');
+    let countersStarted = false;
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !countersStarted) {
+          countersStarted = true;
+          counters.forEach(counter => {
+            const target = parseFloat(counter.getAttribute('data-target'));
+            const decimals = parseInt(counter.getAttribute('data-decimals') || '0', 10);
+            let current = 0;
+            const step = target / 40;
+            const timer = setInterval(() => {
+              current += step;
+              if (current >= target) {
+                counter.textContent = target.toFixed(decimals);
+                clearInterval(timer);
+              } else {
+                counter.textContent = current.toFixed(decimals);
+              }
+            }, 30);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    counters.forEach(c => counterObserver.observe(c));
+
+    // 6. Interactive Expertise Tab Toggler
+    function selectExpertiseTab(paneId, btn) {
+      document.querySelectorAll('.expertise-tab-pane').forEach(p => p.classList.add('hidden'));
+      const activePane = document.getElementById(paneId);
+      if (activePane) activePane.classList.remove('hidden');
+
+      document.querySelectorAll('.expertise-tab-btn').forEach(b => {
+        b.classList.remove('active', 'text-sky-600', 'dark:text-sky-400');
+        b.classList.add('text-[var(--neu-text-muted)]');
+      });
+      btn.classList.add('active', 'text-sky-600', 'dark:text-sky-400');
+      btn.classList.remove('text-[var(--neu-text-muted)]');
+    }
+
+    // 7. Case Study Tabs Toggler
+    function showCasePane(paneId, btn) {
+      document.querySelectorAll('.case-pane').forEach(p => p.classList.add('hidden'));
+      const target = document.getElementById(paneId);
+      if (target) target.classList.remove('hidden');
+
+      document.querySelectorAll('.case-nav-btn').forEach(b => {
+        b.classList.remove('active', 'text-sky-600', 'dark:text-sky-400');
+        b.classList.add('text-[var(--neu-text-muted)]');
+      });
+      btn.classList.add('active', 'text-sky-600', 'dark:text-sky-400');
+      btn.classList.remove('text-[var(--neu-text-muted)]');
+    }
+
+    // 8. Process Flow Interactive Highlight
+    function highlightProcessStep(element) {
+      const parent = element.parentElement;
+      parent.querySelectorAll('.process-node').forEach(node => {
+        node.classList.remove('ring-2', 'ring-sky-500');
+      });
+      element.classList.add('ring-2', 'ring-sky-500');
+    }
+
+    // 9. Interactive Resume Generator & Download
+    function triggerResumeDownload(e) {
+      e.preventDefault();
+      const feedback = document.getElementById('resume-download-feedback');
+      if (feedback) feedback.classList.remove('hidden');
+
+      const resumeContent = 
+`=============================================================
+USAMA BIN KASHEM | SAP ARIBA UPSTREAM CONSULTANT
+Contact: Usama.bin.ee.785@gmail.com | +91 8420537465
+Location: Howrah, West Bengal, India
+=============================================================
+
+PROFILE SUMMARY:
+Dedicated SAP Ariba Upstream Functional Consultant with 2.7+ years of experience
+orchestrating Supplier Lifecycle & Performance (SLP), Strategic Sourcing, and
+Contract Lifecycle Management (CLM). Proven record in enterprise AMS support for
+premier accounts (Anglo American via Accenture, KFC via Cognizant).
+
+CORE COMPETENCIES:
+• SAP Ariba SLP: Supplier Registration, Modular Questionnaires, Qualification Matrices, SPM Scorecards.
+• SAP Ariba Sourcing: RFI/RFP Events, English Reverse Auctions, Formula-based Weighted Scoring.
+• SAP Ariba CLM: Contract Workspaces, Clause Library Governance, Amendment Lifecycles.
+• Delivery Rigor: BRD Preparation, Change Request Triage, UAT Execution, ServiceNow/SolMan.
+
+CERTIFICATIONS:
+1. SAP Ariba Contract Management (Implementation Basic)
+2. SAP Ariba SLP (Implementation Basic)
+3. SAP Gen AI Certified (Procurement Analytics)
+4. SAP MM Training (Foundational Procure-to-Pay)
+
+PROFESSIONAL EXPERIENCE:
+1. Application Development Associate (SAP Ariba Upstream)
+   Accenture | Client: Anglo American | Jan 2025 - Present
+2. Program Analyst (SAP Functional Support)
+   Cognizant | Client: KFC | Jul 2024 - Dec 2024
+3. SAP Functional Intern
+   Cognizant | Dec 2023 - Apr 2024
+
+EDUCATION:
+B.Tech in Electrical Engineering, Guru Nanak Institute of Technology (2023)
+Graduation Score: 8.9 CGPA
+=============================================================`;
+
+      const blob = new Blob([resumeContent], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Usama_Bin_Kashem_SAP_Ariba_Upstream_Profile.txt';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    // 10. Contact Form Submission Handler
+    function handleRecruiterSubmit(e) {
+      e.preventDefault();
+      const banner = document.getElementById('form-success-banner');
+      if (banner) banner.classList.remove('hidden');
+      const form = document.getElementById('portfolio-contact-form');
+      if (form) form.reset();
+    }
+  </script>
+</body></html>
